@@ -1,13 +1,28 @@
-import java.util.*;
+import sudoku.*;
+import java.util.Scanner;
 
 public class App {
-
-    public static int r = 2703;
-    public static String st = "UDACITY";
-    public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
-        System.out.println(Integer.hashCode(2703));
-
     
+    public static void resolverSudoku(Sudoku sudoku){
+        Resolver resolver = new Resolver(sudoku);
+        
+        resolver.resolver();
+        
+        sudoku.imprimirSudoku();
+        
+        System.out.println("\n");
+    }
+
+    public static void main(String[] args){
+        
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Introduce el nombre del fichero: ");
+        String sudokuFile = sc.nextLine();
+        sc.close();
+        
+        Sudoku sudoku = new Sudoku(sudokuFile);
+
+        resolverSudoku(sudoku);
     }
 }
