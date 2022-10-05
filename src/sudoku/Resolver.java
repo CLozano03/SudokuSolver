@@ -49,28 +49,31 @@ public class Resolver implements IResolver{
 
         sudoku.setN(coordenada, numero);
         /**
-         * Variable auxiliar que me comprueba cada una de las coordenadas de
+         * ----------------------------------
+         *  Eliminando candidatos asociados
+         * ----------------------------------
+         * 
+         * Declaro variable auxiliar que me comprueba cada una de las coordenadas de
          * la cruz y del cuadrado que forma la coordenada dada.
          */
-        Coordenada coordenadaAux = new Coordenada(0, 0);
-        /**
-         * ----------------------------------
-         * Eliminando candidatos asociados
-         * ----------------------------------
-         */
+
+        Coordenada coordenadaAux = new Coordenada(1, 1);
+        
+        //Primero elimino los candidatos de la propia coordenada
+        while(matrizCandidatos[coordenada.getX() - 1][coordenada.getY() - 1].size() > 0) {
+            matrizCandidatos[coordenada.getX() - 1][coordenada.getY() - 1].remove(0);
+        }
 
         //Cruz que forma la coordenada
-        for (int i = 0; i < Sudoku.TAMANO_SUDOKU; i++) {
+        for (int i = 1; i < Sudoku.TAMANO_SUDOKU+1; i++) {
 
-            coordenadaAux.setX(i);
-            coordenadaAux.setY(coordenada.getY() - 1);
+            coordenadaAux.setXY(i, coordenada.getY());
 
-            matrizCandidatos[coordenadaAux.getX()][coordenadaAux.getY()].remove(numeroQ);
+            matrizCandidatos[coordenadaAux.getX()-1][coordenadaAux.getY()-1].remove(numeroQ);
 
-            coordenadaAux.setX(coordenada.getX() - 1);
-            coordenadaAux.setY(i);
+            coordenadaAux.setXY(coordenada.getX(), i);
 
-            matrizCandidatos[coordenadaAux.getX()][coordenadaAux.getY()].remove(numeroQ);
+            matrizCandidatos[coordenadaAux.getX()-1][coordenadaAux.getY()-1].remove(numeroQ);
         }
 
         //Matriz del cuadrado 3*3
@@ -90,11 +93,8 @@ public class Resolver implements IResolver{
     public void comprobarFilas(){
         for(int i = 1; i <= Sudoku.TAMANO_SUDOKU; i++){
             comprobarFilaAux(i, true);
-        }
-
-        /* for(int i = 1; i <= Sudoku.TAMANO_SUDOKU; i++){
             comprobarFilaAux(i, false);
-        } */
+        }
     }
 
     @Override
@@ -178,12 +178,13 @@ public class Resolver implements IResolver{
          * }
          */
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 10; i++) {
             comprobarCandidatos();
-        }
-        for (int i = 0; i < 3; i++){
             comprobarFilas();
         }
+        /* for (int i = 0; i < 3; i++){
+            comprobarFilas();
+        } */
         
 
     }
@@ -206,6 +207,7 @@ public class Resolver implements IResolver{
                 System.out.println();
             }
         }
+        System.out.println();
     }
 
 }
