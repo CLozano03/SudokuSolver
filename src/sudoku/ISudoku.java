@@ -2,6 +2,13 @@ package sudoku;
 
 import utils.*;
 
+/**
+ * Esta interfaz define lo que es un sudoku y
+ * los metodos que dan informacion sobre este
+ * 
+ * @author Cesar Lozano
+ * 
+ */
 public interface ISudoku {
     /**
      * Imprime la matriz del sudoku por consola
@@ -50,7 +57,20 @@ public interface ISudoku {
     public boolean hayNCuadrado(int numero, Coordenada coordenada);
 
     /**
-     * @return si el sudoku esta resuelto correctamente
+     * 
+     * @return si cada casilla del sudoku esta rellena con algun numero
      */
-    public boolean estaResuelto();
+    public boolean estaCompleto();
+
+    /**
+     * 
+     * @return si no existen numeros repetidos en casillas asociadas a cada una de las casillas del sudoku
+     */
+    public boolean esCorrecto();
+
+    /**
+     * 
+     * @return si el sudoku esta completo y es correcto a su vez 
+     */
+    public boolean sudokuResuelto();
 }
