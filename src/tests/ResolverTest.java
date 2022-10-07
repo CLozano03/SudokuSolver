@@ -12,10 +12,9 @@ public class ResolverTest {
     public static void resolverSudoku(Sudoku sudoku){
         Resolver resolver = new Resolver(sudoku);
         
-        resolver.imprimirMatriz();
-        resolver.asignarNumero(1, new Coordenada(1, 1));
-        resolver.imprimirMatriz();
-        resolver.asignarNumero(5, new Coordenada(1, 2));
+        resolver.resolver();
+        System.out.println("Sudoku: ");
+        sudoku.imprimirSudoku();
         resolver.imprimirMatriz();
         /* resolver.resolver();
         

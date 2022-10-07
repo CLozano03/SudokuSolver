@@ -17,7 +17,7 @@ public class App {
         
         Scanner sc = new Scanner(System.in);
         
-        System.out.print("Introduce el nombre del fichero: ");
+        System.out.print("Introduce el nombre del fichero (files/nombre_fichero): ");
         String sudokuFile = sc.nextLine();
         sc.close();
         

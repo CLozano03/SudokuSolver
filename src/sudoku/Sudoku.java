@@ -73,6 +73,7 @@ public class Sudoku implements ISudoku {
                 System.out.println();
             }
         }
+        System.out.println();
     }
 
     @Override
@@ -129,5 +130,23 @@ public class Sudoku implements ISudoku {
         }
 
         return estaResuelto;
+    }
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof Sudoku)) {
+            return false;
+        }
+        Sudoku s = (Sudoku) o;
+        boolean iguales = true;
+        
+        //Recorro las matrices
+        for(int i = 0; i < Sudoku.TAMANO_SUDOKU && iguales; i++) {
+            for(int j = 0; j < Sudoku.TAMANO_SUDOKU && iguales; j++) {
+                iguales = matrizSudoku[i][j] == s.matrizSudoku[i][j];
+            }
+        }
+        return iguales;
     }
 }
