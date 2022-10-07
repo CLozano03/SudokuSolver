@@ -6,7 +6,7 @@ import utils.*;
 public abstract class SudokuTest {
 
     //Creacion sudoku
-    static Sudoku sudoku = new Sudoku("files/In2.text");
+    static Sudoku sudoku = new Sudoku("files/In1.text");
 
     //Declaracion de coordenadas
     static Coordenada coordenada1 = new Coordenada(1, 1);
@@ -53,9 +53,21 @@ public abstract class SudokuTest {
                           (hayN_Prueba2 == true) &&
                           (hayN_Prueba3 == false);
 
-    
-    
-    
+    /*
+        Mapa con las coordenadas para que sean mas accesibles visualmente
+
+     *     * 1 0 0  0 0 0  0 0 0 
+     *     * 0 0 0  0 0 0  0 0 0 
+     *     * 0 0 0  0 0 0  0 0 0
+     * 
+     *     * 0 0 0  2 0 0  0 0 0 
+     *     * 0 0 0  0 0 0  0 0 0 
+     *     * 0 3 0  0 0 0  0 0 0 
+     * 
+     *     * 0 0 0  0 0 0  0 0 0 
+     *     * 0 0 0  0 0 0  5 0 0 
+     *     * 0 0 0  4 0 0  0 0 0 
+     */
 
     public static void main(String[] args) {
 
@@ -68,6 +80,9 @@ public abstract class SudokuTest {
         System.out.println("Prueba hayNCuadrado: " + hayNCuadrado);
         System.out.println("Prueba hayN: " + hayN);
 
+
+        System.out.println("\nTesteando el setter en coordenada " + coordenada1 + ":\n");
+        
         sudoku.setN(coordenada1, 6);
         
         sudoku.imprimirSudoku();
