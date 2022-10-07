@@ -117,20 +117,43 @@ public class Sudoku implements ISudoku {
     }
 
     @Override
-    public boolean estaResuelto() {
+    public boolean estaCompleto() {
         boolean estaResuelto = true;
 
         Coordenada coordenada = new Coordenada(0, 0);
 
-        for (int i = 0; i < Sudoku.TAMANO_SUDOKU && estaResuelto; i++) {
-            for (int j = 0; j < TAMANO_SUDOKU && estaResuelto; j++) {
-                coordenada.setXY(i + 1, j + 1);
+        for (int i = 1; i <= Sudoku.TAMANO_SUDOKU && estaResuelto; i++) {
+            for (int j = 1; j <= TAMANO_SUDOKU && estaResuelto; j++) {
+                coordenada.setXY(i, j);
                 estaResuelto = estaVacia(coordenada);
             }
         }
 
         return estaResuelto;
     }
+
+    @Override
+    public boolean esCorrecto(){
+        boolean esCorrecto = true;
+        Coordenada coordenadaAux = new Coordenada(0, 0);
+        
+        for(int i = 1; i <= Sudoku.TAMANO_SUDOKU && esCorrecto; i++){
+            for(int j = 1; j <= Sudoku.TAMANO_SUDOKU && esCorrecto; j++){
+                coordenadaAux.setXY(i,j);
+                
+                if(!estaVacia(coordenadaAux)){
+                    esCorrecto = !(hayN(matrizSudoku[i-1][j-1], coordenadaAux) || hayNCuadrado(matrizSudoku[i-1][j-1], coordenadaAux));
+                }
+            }
+        }
+        return esCorrecto;
+    }
+
+    @Override
+    public boolean sudokuResuelto(){
+        return estaCompleto() || esCorrecto();
+    }
+
     public boolean equals(Object o) {
         if (o == this) {
             return true;
