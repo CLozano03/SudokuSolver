@@ -189,7 +189,7 @@ public class Resolver implements IResolver{
 
     }
 
-
+    //Este metodo imprime una matriz con la longitud de la lista numeros candidatos, util para testear esta clase
     public void imprimirMatriz() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -211,4 +211,3 @@ public class Resolver implements IResolver{
     }
 
 }
-//prueba
