@@ -8,14 +8,13 @@ import tads.*;
  * @author Cesar Lozano
  */
 public class NumerosCandidatos extends ArrayList<Integer>{
-    private ArrayList<Integer> numeros;
 
     public NumerosCandidatos(){
-        numeros = new ArrayList<Integer>();
+        super();
     }
 
     public NumerosCandidatos(Sudoku sudoku, Coordenada coordenada) {
-        numeros = new ArrayList<Integer>();
+        super();
     
         for (int numero : Sudoku.NUMEROS_SUDOKU) {
             if(!(sudoku.hayN(numero, coordenada) || sudoku.hayNCuadrado(numero, coordenada))){
@@ -32,14 +31,12 @@ public class NumerosCandidatos extends ArrayList<Integer>{
          */
     }
     
-    
-    ///ERROOR: cuando ya hay un numero candidato en una casilla, hay veces que lo añade otra vez
-
-    /* @Override
+    //Sobreescritura de add para no añadir dos veces el mismo numero
+    @Override
     public void add (int index, Integer element){
         if(indexOf(element) != -1){
             super.add(index, element);
         }
-    } */
+    }
 
 }
