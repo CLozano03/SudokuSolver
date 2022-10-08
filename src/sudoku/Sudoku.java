@@ -1,7 +1,7 @@
 package sudoku;
 
-import stdlib.*;
 import utils.*;
+import stdlib.*;
 
 /**
  * Implementación de {@code ISudoku}
@@ -17,13 +17,13 @@ public class Sudoku implements ISudoku {
     public static final int TAMANO_SUDOKU = 9;
 
     /**
-     * Array tridimensional con los numeros de los 9 cuadrados
-     * en un array de 9 elementos
+     * Array tridimensional. Cada elemento de la 3x3 contiene
+     *  un array con los 9 elementos del cuadrado asociado.
      */
     public int[][][] cuadrados = new int[3][3][9];
 
     /**
-     * Pone en la {@value matrizSudoku} cada uno de los 
+     * Pone en {@value matrizSudoku} cada uno de los 
      * numeros leidos en el archivo "filename"
      * 
      * Por otro lado, pone cada uno de los numeros del sudoku 
@@ -31,15 +31,17 @@ public class Sudoku implements ISudoku {
      * @param filename
      */
     public Sudoku(String filename) {
+
         In sc = new In(filename);
-        matrizSudoku = new int[9][9];
+        matrizSudoku = new int[TAMANO_SUDOKU][TAMANO_SUDOKU];
 
         //Matriz del sudoku
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
+        for (int i = 0; i < TAMANO_SUDOKU; i++) {
+            for (int j = 0; j < TAMANO_SUDOKU; j++) {
                 matrizSudoku[i][j] = sc.readInt();
             }
         }
+        sc.close();
 
         //Creacion de la matriz de cuadrdados
         for (int i = 0; i < 3; i++) {
@@ -47,8 +49,8 @@ public class Sudoku implements ISudoku {
                 for (int k = 0; k < 9; k++) {
                     cuadrados[i][j][k] = matrizSudoku[i * 3 + (int) k / 3][j * 3 + k % 3];
                     /*
-                     * 
-                     */
+                        * 
+                        */
                 }
             }
         }
@@ -56,24 +58,26 @@ public class Sudoku implements ISudoku {
     }
 
     @Override
-    public void imprimirSudoku() {
+    public String toString() {
+
+        String toString = "";
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if ((j + 1) % 3 == 0 && j != 8) {
-                    System.out.print(matrizSudoku[i][j] + "|");
+                    toString += matrizSudoku[i][j] + "|";
                 } else {
-                    System.out.print(matrizSudoku[i][j] + " ");
+                    toString += matrizSudoku[i][j] + " ";
                 }
             }
             if ((i + 1) % 3 == 0 && i != 8) {
-                System.out.println();
-                System.out.println("------------------");
+                toString += "\n------------------\n";
 
             } else {
-                System.out.println();
+                toString += "\n";
             }
         }
-        System.out.println();
+        toString += "\n";
+        return toString;
     }
 
     @Override

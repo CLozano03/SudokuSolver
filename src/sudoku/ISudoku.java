@@ -13,7 +13,7 @@ public interface ISudoku {
     /**
      * Imprime la matriz del sudoku por consola
      */
-    public void imprimirSudoku();
+    public String toString();
     
     /**
      * @param coordenada
