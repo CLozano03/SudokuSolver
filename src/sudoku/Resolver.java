@@ -145,6 +145,54 @@ public class Resolver implements IResolver{
         }
     }
     
+    public void comprobarCuadrados(){
+        Coordenada aux = new Coordenada(0, 0);
+        Coordenada posibleAsignacion = new Coordenada(0, 0);
+        int contador = 0;
+
+
+        for (int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                //Aqui estoy recorriendo cada uno de los cuadrados 3*3 del sudoku
+                contador = 0;
+
+                aux.setXY(3*i +1, 3*j+1);
+                for(int numeroComprobando: Sudoku.NUMEROS_SUDOKU){
+                    if(!sudoku.hayNCuadrado(numeroComprobando, aux)){
+                        contador = 0;
+                        //En caso de que ese numero no este en el cuadrado, comprobamos si puede ir en algun sitio
+                        for(int k = 0; k < 3; k++){
+                            aux.setX(3*i +1 + k);
+                            for(int l = 0; l < 3; l++){
+                                aux.setY(3*j + 1 + l);
+
+                                /*
+                                 * Si pasa estas dos ultimas condiciones, sabemos que:
+                                 * 
+                                 *  -La casilla esta vacia
+                                 *  -El numeroComprobando puede ir en la casilla
+                                 * 
+                                 * Si al terminar el recorrido del cuadrado
+                                 * el numero solo puede ir en una casilla,
+                                 * se le asigna en esa coordenada
+                                 */
+                                if(!sudoku.hayN(numeroComprobando, aux) && sudoku.estaVacia(aux)){
+                                    posibleAsignacion = new Coordenada(aux.getX(), aux.getY());
+                                    contador++;
+                                }
+                            }
+                        }     
+                        if(contador == 1){
+                            asignarNumero(numeroComprobando, posibleAsignacion);
+                        }
+                    }
+                }
+                //Paso a comprobar siguiente cuadrado
+                
+            }
+        }    
+    }
+
     @Override
     public void comprobarCandidatos(){
         Coordenada coordenadaAux = new Coordenada(0, 0);
@@ -170,23 +218,24 @@ public class Resolver implements IResolver{
             }
         }
 
+
+    
+
+
+
+
     public void resolver() {
+        /* while(!sudoku.sudokuResuelto()){
+            comprobarCandidatos();
+            comprobarFilas();
+            comprobarCuadrados();  
+        } */
 
-        /*
-         * while(!sudoku.estaResuelto()){
-         * 
-         * }
-         */
-
-        for (int i = 0; i < 10; i++) {
+        for(int i = 0; i < 6; i++){
+            comprobarCuadrados(); 
             comprobarCandidatos();
             comprobarFilas();
         }
-        /* for (int i = 0; i < 3; i++){
-            comprobarFilas();
-        } */
-        
-
     }
 
     //Este metodo imprime una matriz con la longitud de la lista numeros candidatos, util para testear esta clase

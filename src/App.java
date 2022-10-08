@@ -7,22 +7,24 @@ public class App {
         Resolver resolver = new Resolver(sudoku);
         
         resolver.resolver();
-        
-        sudoku.imprimirSudoku();
-        
-        System.out.println("\n");
     }
 
     public static void main(String[] args){
         
         Scanner sc = new Scanner(System.in);
         
-        System.out.print("Introduce el nombre del fichero (files/nombre_fichero): ");
+        System.out.print("Introduce el nombre del fichero con formato (files/nombre_fichero): ");
         String sudokuFile = sc.nextLine();
         sc.close();
         
         Sudoku sudoku = new Sudoku(sudokuFile);
 
+        System.out.println("Tu sudoku: \n");
+        System.out.print(sudoku.toString());
+    
         resolverSudoku(sudoku);
+        System.out.println("Tu sudoku resuelto: \n");
+        System.out.print(sudoku.toString());    
+        
     }
 }
