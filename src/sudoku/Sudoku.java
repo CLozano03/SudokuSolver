@@ -49,7 +49,7 @@ public class Sudoku implements ISudoku {
                 for (int k = 0; k < 9; k++) {
                     cuadrados[i][j][k] = matrizSudoku[i * 3 + (int) k / 3][j * 3 + k % 3];
                     /*
-                        * 
+                        * COMENTAR ESTO
                         */
                 }
             }
@@ -83,6 +83,11 @@ public class Sudoku implements ISudoku {
     @Override
     public boolean estaVacia(Coordenada coordenada) {
         return matrizSudoku[coordenada.getX() - 1][coordenada.getY() - 1] == 0;
+    }
+
+    @Override
+    public int getN(Coordenada coordenada) {
+        return matrizSudoku[coordenada.getX() - 1][coordenada.getY() - 1];
     }
     
     @Override
@@ -122,20 +127,23 @@ public class Sudoku implements ISudoku {
 
     @Override
     public boolean estaCompleto() {
-        boolean estaResuelto = true;
+        boolean completo = true;
 
         Coordenada coordenada = new Coordenada(0, 0);
 
-        for (int i = 1; i <= Sudoku.TAMANO_SUDOKU && estaResuelto; i++) {
-            for (int j = 1; j <= TAMANO_SUDOKU && estaResuelto; j++) {
+        for (int i = 1; i <= Sudoku.TAMANO_SUDOKU && completo; i++) {
+            for (int j = 1; j <= TAMANO_SUDOKU && completo; j++) {
                 coordenada.setXY(i, j);
-                estaResuelto = estaVacia(coordenada);
+                completo = !estaVacia(coordenada);
             }
         }
 
-        return estaResuelto;
+        return completo;
     }
 
+
+    //LA implementacion de esta funcion falla porq el metodo hayN comprueba la misma coordenada a la que apunta, cuando no deberia
+    //Cambiar hayN y/o resto de llamadas
     @Override
     public boolean esCorrecto(){
         boolean esCorrecto = true;
@@ -146,7 +154,7 @@ public class Sudoku implements ISudoku {
                 coordenadaAux.setXY(i,j);
                 
                 if(!estaVacia(coordenadaAux)){
-                    esCorrecto = !(hayN(matrizSudoku[i-1][j-1], coordenadaAux) || hayNCuadrado(matrizSudoku[i-1][j-1], coordenadaAux));
+                    esCorrecto = !hayN(getN(coordenadaAux), coordenadaAux);
                 }
             }
         }
@@ -155,7 +163,7 @@ public class Sudoku implements ISudoku {
 
     @Override
     public boolean sudokuResuelto(){
-        return estaCompleto() || esCorrecto();
+        return estaCompleto() && esCorrecto();
     }
 
     public boolean equals(Object o) {
