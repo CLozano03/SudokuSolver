@@ -18,13 +18,22 @@ public abstract class SudokuTest {
     //FUNCIONES--------------------------------------------
 
     // estaVacia(Coordenada coordenada)
-    static boolean estaVacia_Prueba1 = sudoku.estaVacia(coordenada1);
-    static boolean estaVacia_Prueba2 = sudoku.estaVacia(coordenada2);
-    static boolean estaVacia_Prueba3 = sudoku.estaVacia(coordenada3);
+    static boolean estaVacia_Prueba1 = sudoku.estaVacia(coordenada1); // True
+    static boolean estaVacia_Prueba2 = sudoku.estaVacia(coordenada2); // False
+    static boolean estaVacia_Prueba3 = sudoku.estaVacia(coordenada3); // True
 
     static boolean estaVacia = (estaVacia_Prueba1 == true) && 
                                (estaVacia_Prueba2 == false) && 
                                (estaVacia_Prueba3 == true);
+
+    // estaVacia(Coordenada coordenada)
+    static int getN_Prueba1 = sudoku.getN(coordenada1); // 0
+    static int getN_Prueba2 = sudoku.getN(coordenada2); // 4
+    static int getN_Prueba3 = sudoku.getN(coordenada3); // 0
+
+    static boolean getN = (getN_Prueba1 == 0) && 
+                               (getN_Prueba2 == 4) && 
+                               (getN_Prueba3 == 0);
 
     // hayNFila(int numero, int nFilas, boolean FilaColumna)
     static boolean hayNFila_Prueba1 = sudoku.hayNFila(1, 1, true);
@@ -71,22 +80,25 @@ public abstract class SudokuTest {
 
     public static void main(String[] args) {
 
-        sudoku.imprimirSudoku();
+        System.out.println(sudoku.toString());
 
         System.out.println();
         
+
         System.out.println("Prueba estaVacia: " + estaVacia);
-        System.out.println("Prueba hayNFila: " + hayNFila);
-        System.out.println("Prueba hayNCuadrado: " + hayNCuadrado);
-        System.out.println("Prueba hayN: " + hayN);
+
+        System.out.println("Prueba getN: " + getN);
+        // System.out.println("Prueba hayNFila: " + hayNFila);
+        // System.out.println("Prueba hayNCuadrado: " + hayNCuadrado);
+        // System.out.println("Prueba hayN: " + hayN);
 
 
-        System.out.println("\nTesteando el setter en coordenada " + coordenada1 + ":\n");
+        // System.out.println("\nTesteando el setter en coordenada " + coordenada1 + ":\n");
         
-        sudoku.setN(coordenada1, 6);
-        
-        sudoku.imprimirSudoku();
+        //sudoku.setN(coordenada1, 6);
 
+        System.out.println("El sudoku es Correcto: " + sudoku.esCorrecto());
 
     }
 }
+
