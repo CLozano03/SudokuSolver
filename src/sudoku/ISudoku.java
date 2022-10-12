@@ -20,7 +20,13 @@ public interface ISudoku {
      * @return si una casilla esta vacia
      */
     public boolean estaVacia(Coordenada coordenada);
-    
+
+    /**
+     * 
+     * @param coordenada
+     * @return el numero en la coordenada especificada
+     */
+    public int getN(Coordenada coordenada);
     /**
      * Cambia el numero de una casilla por otro
      *  
