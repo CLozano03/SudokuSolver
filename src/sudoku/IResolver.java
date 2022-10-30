@@ -34,7 +34,7 @@ public interface IResolver {
      * @param nFila numerada del 1 al 9
      * @param filaColumna si es fila o columna
      */
-    public void comprobarFilaAux(int nFila, boolean filaColumna);
+    public void comprobarFilaAux(Coordenada coordenada);
 
     /**
      * Funcion que llama a comprobarCandidatosAux(Coordenada coordenada)
