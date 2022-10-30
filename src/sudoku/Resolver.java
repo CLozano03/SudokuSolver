@@ -98,7 +98,7 @@ public class Resolver implements IResolver{
     }
 
     @Override
-    public void comprobarFilaAux(int nFila, boolean filaColumna){
+    public void comprobarFilaAux(Coordenada coordenada){
         /**
          * Contador que se resetea cada vez que comprueba un numero. Simboliza el 
          * numero de casillas en las que puede ir un numero, en caso en que solo pueda ir en uno,
@@ -107,9 +107,8 @@ public class Resolver implements IResolver{
         int contador = 0;
         Coordenada coordenadaAux = new Coordenada(0, 0);
 
-        if(filaColumna){
             //Comprobando en una fila
-            coordenadaAux.setX(nFila);
+            coordenadaAux.setX(coordenada.getX());
 
             /**
              * Para cada numero del sudoku, en caso de que no este en nFila
@@ -117,7 +116,7 @@ public class Resolver implements IResolver{
              * en el cuadrado o en la columna. En caso negativo, sumo uno al contador
              */
             for(int numero : Sudoku.NUMEROS_SUDOKU){
-                if(!sudoku.hayNFila(numero, nFila, filaColumna)){
+                if(!sudoku.hayNFila(numero, coordenada)){
                     for(int i = 1; i <= Sudoku.TAMANO_SUDOKU && contador < 2; i++){
                         coordenadaAux.setY(i);
                         if(sudoku.estaVacia(coordenadaAux)){
@@ -131,18 +130,14 @@ public class Resolver implements IResolver{
                 if(contador == 1){
                     boolean done = false;
                     for(int i = 0; i < Sudoku.TAMANO_SUDOKU && !done; i++){
-                        if(!(matrizCandidatos[nFila - 1][i].indexOf(numero) == -1)){
-                            asignarNumero(numero, new Coordenada(nFila, i+1));
+                        if(!(matrizCandidatos[coordenada.getX() - 1][i].indexOf(numero) == -1)){
+                            asignarNumero(numero, new Coordenada(coordenada.getX(), i+1));
                             done = true;
                         }
                     }
                 }
                 contador = 0; //Reseteamos contador para el proximo numero a comprobar
             }
-
-        } else{
-
-        }
     }
     
     public void comprobarCuadrados(){
