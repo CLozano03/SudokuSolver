@@ -125,16 +125,11 @@ public class Sudoku implements ISudoku {
                 hayN = ((i != coordenada.getY() -1) && matrizSudoku[coordenada.getX() - 1][i] == numero) || (i != coordenada.getX() -1
                         && matrizSudoku[i][coordenada.getY() - 1] == numero);
                 //Quiero que la i no sea la misma coordenada de lo que compruebo
-            }
-            for(int i = 0; i < 9 && !hayN; i++){
-                hayN = (i != coordenada.getX() -1) && matrizSudoku[i][coordenada.getY() - 1] == numero ;
-            }
-
-            
+            }    
             return hayN;
     }
 
-    public boolean hayNCuadrado(int numero, Coordenada coordenada) {
+    public boolean hayNCuadrado(int numero, Coordenada coordenada) { // 1 1 | 2 3
         boolean hayN = false;
         int casillaNoComprobar = 3 * ((coordenada.getX() - 1) % 3) + ((coordenada.getY() - 1) % 3); // Consultar constructor
         for (int i = 0; i < 9 && !hayN; i++) {
@@ -158,7 +153,6 @@ public class Sudoku implements ISudoku {
         }
         return completo;
     }
-
     @Override
     public boolean esCorrecto() {
         boolean esCorrecto = true;
