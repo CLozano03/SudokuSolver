@@ -46,12 +46,11 @@ public interface ISudoku {
     /**
      * 
      * @param numero a comprobar
-     * @param nFila
-     * @param FilaColumna si es true, comprobamos fila. Si es false, comprueba la columna
+     * @param coordenada
      * @return si hay un numero en una nFila
      * 
      */
-    public boolean hayNFila(int numero, int nFila, boolean filaColumna);
+    public boolean hayNFila(int numero, Coordenada coordenada);
 
     /**
      * 
