@@ -31,10 +31,9 @@ public interface IResolver {
      * Para cada numero en Sudoku.NUMEROS_SUDOKU que no este en la fila/columna
      * cuenta las veces que ese numero. Acabada la iteracion de la fila/columna, en caso de que el
      * contador sea 1, asigna ese numero a la casilla vacia que tenga ese numero como candidato
-     * @param nFila numerada del 1 al 9
-     * @param filaColumna si es fila o columna
+     * @param coordenada
      */
-    public void comprobarFilaAux(int nFila, boolean filaColumna);
+    public void comprobarFilaAux(Coordenada coodenada);
 
     /**
      * Funcion que llama a comprobarCandidatosAux(Coordenada coordenada)
