@@ -9,7 +9,7 @@ public class NumerosCandidatosTest {
 
         Sudoku sudoku1 = new Sudoku("files/In2.text");
 
-        //sudoku1.imprimirSudoku();
+        //sudoku1.toString();
         NumerosCandidatos num = new NumerosCandidatos(sudoku1, new Coordenada(5,6));
         
         //System.out.println(num.get(1));
