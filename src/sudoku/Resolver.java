@@ -91,9 +91,11 @@ public class Resolver implements IResolver{
     
     @Override
     public void comprobarFilas(){
+
+        Coordenada coordenadaAux = new Coordenada(0,0);
         for(int i = 1; i <= Sudoku.TAMANO_SUDOKU; i++){
-            comprobarFilaAux(i, true);
-            comprobarFilaAux(i, false);
+            coordenadaAux.setX(i);
+            comprobarFilaAux(coordenadaAux);
         }
     }
 
@@ -226,10 +228,10 @@ public class Resolver implements IResolver{
             comprobarCuadrados();  
         } */
 
-        for(int i = 0; i < 6; i++){
-            comprobarCuadrados(); 
+        for(int i = 0; i < 20; i++){
+            //comprobarFilas();
             comprobarCandidatos();
-            comprobarFilas();
+            comprobarCuadrados(); 
         }
     }
 

@@ -115,23 +115,17 @@ public class Sudoku implements ISudoku {
 
     @Override
     public boolean hayN(int numero, Coordenada coordenada) {
-        return /*
-                * hayNFila(numero, coordenada.getX(), true) || hayNFila(numero,
-                * coordenada.getY(), false)
-                * ||
-                */hayNCuadrado(numero, coordenada);
+        return hayNFila(numero, coordenada) || hayNCuadrado(numero, coordenada);
     }
 
     @Override
     public boolean hayNFila(int numero, Coordenada coordenada) {
         boolean hayN = false;
             for (int i = 0; i < 9 && !hayN; i++) {
-                hayN = ((coordenada.getY() == i + 1) &&(matrizSudoku[coordenada.getX() - 1][i] == numero)) || 
-                        ((coordenada.getY() == i + 1) && matrizSudoku[i][coordenada.getY() - 1] == numero);
-                //Quiero que la i no sea 
-            }
-
-            
+                hayN = ((i != coordenada.getY() -1) && matrizSudoku[coordenada.getX() - 1][i] == numero) || (i != coordenada.getX() -1
+                        && matrizSudoku[i][coordenada.getY() - 1] == numero);
+                //Quiero que la i no sea la misma coordenada de lo que compruebo
+            }    
             return hayN;
     }
 
@@ -159,10 +153,6 @@ public class Sudoku implements ISudoku {
         }
         return completo;
     }
-
-    // LA implementacion de esta funcion falla porq el metodo hayN comprueba la
-    // misma coordenada a la que apunta, cuando no deberia
-    // Cambiar hayN y/o resto de llamadas
     @Override
     public boolean esCorrecto() {
         boolean esCorrecto = true;

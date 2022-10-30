@@ -33,7 +33,7 @@ public interface IResolver {
      * contador sea 1, asigna ese numero a la casilla vacia que tenga ese numero como candidato
      * @param coordenada
      */
-    public void comprobarFilaAux(Coordenada coodenada);
+    public void comprobarFilaAux(Coordenada coordenada);
 
     /**
      * Funcion que llama a comprobarCandidatosAux(Coordenada coordenada)

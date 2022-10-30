@@ -42,4 +42,13 @@ public class Coordenada {
       return "(" + x + ", " + y + ")";
     }
 
+    public boolean equals(Object o){
+      if(!(o instanceof Coordenada)){
+        return false;
+      } else {
+        Coordenada other = (Coordenada) o;
+        return this.x == other.getX() && this.y == other.getY();
+      }
+    }
+
 }

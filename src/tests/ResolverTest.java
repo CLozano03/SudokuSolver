@@ -24,15 +24,17 @@ public class ResolverTest {
         
         resolver.resolver();
         System.out.println("Sudoku: ");
-        sudoku.imprimirSudoku();
+        System.out.println(sudoku.toString());
         resolver.imprimirMatriz();
+        System.out.println("Es correcto: " + sudoku.esCorrecto());
         /* resolver.resolver();
         
-        sudoku.imprimirSudoku(); */
+        System.out.println(sudoku.toString()); */
     }
 
     public static void main(String[] args){
         //resolver.imprimirMatriz();
-        resolverSudoku(sudoku2);
+        resolverSudoku(sudoku1);
+
     }
 }

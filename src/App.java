@@ -24,7 +24,6 @@ public class App {
     
         resolverSudoku(sudoku);
         System.out.println("Tu sudoku resuelto: \n");
-        System.out.print(sudoku.toString());    
-        
+        System.out.print(sudoku.toString());     
     }
 }
