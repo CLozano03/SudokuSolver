@@ -1,4 +1,4 @@
-#include "sudoku.hpp"
+#include "../include/sudoku.hpp"
 #include <fstream>
 #include <iostream>
 

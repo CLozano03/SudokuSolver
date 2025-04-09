@@ -1,21 +1,25 @@
 CXX = g++
-CXXFLAGS = -std=c++11 -Wall
-
+CXXFLAGS = -std=c++17 -Wall -Wextra -O2
+INCLUDES = -Iinclude
 SRC_DIR = src
-BUILD_DIR = build
+OBJ_DIR = build/obj
+BIN_DIR = build
+TARGET = $(BIN_DIR)/sudoku_solve
+
 SRCS = $(wildcard $(SRC_DIR)/*.cpp)
-OBJS = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SRCS))
-EXEC = $(BUILD_DIR)/sudoku_solve
+OBJS = $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRCS))
 
-all: $(EXEC)
+all: $(TARGET)
 
-$(EXEC): $(OBJS)
-	@mkdir -p $(BUILD_DIR)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $(EXEC)
+$(TARGET): $(OBJS)
+	@mkdir -p $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(TARGET)
 
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
-	@mkdir -p $(BUILD_DIR)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@mkdir -p $(OBJ_DIR)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
-	rm -rf $(BUILD_DIR)
+	rm -rf build
+
+.PHONY: all clean

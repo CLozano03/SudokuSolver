@@ -1,6 +1,6 @@
 #include <iostream>
-#include "sudoku.hpp"
-#include "solver.hpp"
+#include "../include/sudoku.hpp"
+#include "../include/solver.hpp"
 
 int main(int argc, char* argv[]) {
     if (argc < 2) {
